@@ -7,64 +7,95 @@
   </head>
   <body>
     <!-- Header -->
-    <h1>Find Your Furry Friend!</h1>
-    <p>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eius
-      laboriosam eligendi consectetur in quas amet alias est, incidunt
-      distinctio, quidem repellendus. Reprehenderit hic eum doloribus distinctio
-      quo. Eveniet nam quibusdam reprehenderit.
-    </p>
+    <header>
+      <h1>Find Your Furry Friend!</h1>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Impedit eius
+        laboriosam eligendi consectetur in quas amet alias est, incidunt
+        distinctio, quidem repellendus. Reprehenderit hic eum doloribus
+        distinctio quo. Eveniet nam quibusdam reprehenderit.
+      </p>
+    </header>
 
-    <!-- About -->
-    <h2>About Us</h2>
-    <p>dflsgjdroifghdr</p>
+    <main>
+      <!-- About -->
+      <section>
+        <h2>About Us</h2>
+        <p>dflsgjdroifghdr</p>
+      </section>
 
-    <!-- Features -->
-    <h2>Why Adopt From Us?</h2>
-    <ul>
-      <li>Comprehensive Veterinary Checks</li>
-      <li>Behavioral Training for All Dogs</li>
-      <li>ladida</li>
-    </ul>
+      <!-- Features -->
+      <section>
+        <h2>Why Adopt From Us?</h2>
+        <ul>
+          <li>Comprehensive Veterinary Checks</li>
+          <li>Behavioral Training for All Dogs</li>
+          <li>ladida</li>
+        </ul>
+      </section>
 
-    <!-- Gallery -->
-    <h2>Meet Our Dogs</h2>
-    <!-- img[src="https://placedog.net/500/280" alt="Dog $"]*9 -->
-    <img src="./darth.png" alt="Dog 1" width="300px" />
-    <img src="https://placedog.net/500/280" alt="Dog 2" width="300px" />
-    <img src="https://placedog.net/500/280" alt="Dog 3" width="300px" />
-    <img src="https://placedog.net/500/280" alt="Dog 4" width="300px" />
-    <img src="https://placedog.net/500/280" alt="Dog 5" width="300px" />
-    <img src="https://placedog.net/500/280" alt="Dog 6" width="300px" />
-    <img src="https://placedog.net/500/280" alt="Dog 7" width="300px" />
-    <img src="https://placedog.net/500/280" alt="Dog 8" width="300px" />
-    <img src="https://placedog.net/500/280" alt="Dog 9" width="300px" />
+      <!-- Gallery -->
+      <article>
+        <h2>Meet Our Dogs</h2>
+        <!-- img[src="https://placedog.net/500/280" alt="Dog $"]*9 -->
+        <figure><img src="./darth.png" alt="Dog 1" width="300" /></figure>
+        <figure>
+          <img src="https://placedog.net/500/280" alt="Dog 2" width="300" />
+        </figure>
+        <figure>
+          <img src="https://placedog.net/500/380" alt="Dog 3" width="300" />
+        </figure>
+        <figure>
+          <img src="https://placedog.net/600/280" alt="Dog 4" width="300" />
+        </figure>
+        <figure>
+          <img src="https://placedog.net/600/290" alt="Dog 5" width="300" />
+        </figure>
+        <figure>
+          <img src="https://placedog.net/700/280" alt="Dog 6" width="300" />
+        </figure>
+        <figure>
+          <img src="https://placedog.net/500/260" alt="Dog 7" width="300" />
+        </figure>
+        <figure>
+          <img src="https://placedog.net/500/240" alt="Dog 8" width="300" />
+        </figure>
+        <figure>
+          <img src="https://placedog.net/500/200" alt="Dog 9" width="300" />
+        </figure>
+      </article>
 
-    <!-- Contact -->
-    <h2>Get in Touch</h2>
-    <form action="" method="get">
-      <div>
-        <label for="username">Name:</label>
-        <input type="text" id="username" name="username" required />
-      </div>
-      <div>
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-      <div>
-        <!-- <label for="message"><font size="1px">Message</font></label> -->
-        <label for="message">Message</label>
-        <textarea name="message" id="message"></textarea>
-      </div>
+      <!-- Contact -->
+      <h2>Get in Touch</h2>
+      <form action="#" method="get">
+        <fieldset>
+          <legend>Contact Information</legend>
+          <div>
+            <label for="username">Name:</label>
+            <input type="text" id="username" name="username" required />
+          </div>
+          <div>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div>
+            <!-- <label for="message"><font size="1px">Message</font></label> -->
+            <!-- font is not supposted to be used anymore -->
+            <label for="message">Message</label>
+            <textarea name="message" id="message"></textarea>
+          </div>
+          <div>
+            <button>Submit</button>
+            <button type="reset">Clear</button>
+          </div>
+        </fieldset>
+      </form>
+    </main>
 
-      <div>
-        <button>Submit</button>
-        <button type="reset">Clear</button>
-      </div>
-    </form>
-
-    <!-- Footer -->
-    <p>© 2025 Dog Adoption Agency 🐶🐾</p>
-    <!-- <p>&copy; 2025 Dog Adoption Agency.</p> -->
+    <footer>
+      <!-- Footer -->
+      <p>© 2025 Dog Adoption Agency 🐶🐾</p>
+      <!-- <p>&copy; 2025 Dog Adoption Agency.</p> -->
+    </footer>
   </body>
 </html>
