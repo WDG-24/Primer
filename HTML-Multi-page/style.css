@@ -1,0 +1,130 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  background-color: #5c8040;
+  color: #feffef;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+a,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+header,
+main,
+footer {
+  max-width: 1200px;
+  margin: auto;
+}
+
+header {
+  /* outline: 1px solid black; */
+
+  /* margin: 10px 50px 1px 4px; */
+  /* margin-bottom: 1px; */
+  margin-block: 1rem;
+  /* margin-inline: 1rem; */
+}
+
+header ul {
+  margin-bottom: 1rem;
+  list-style: none;
+  width: fit-content;
+  margin-inline: auto;
+}
+
+header li {
+  display: inline;
+  margin-right: 10px;
+}
+
+header p {
+  font-size: 2rem;
+}
+
+header nav a {
+  text-decoration: none;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+  color: white;
+  text-underline-offset: 3px;
+}
+
+h1 {
+  text-align: center;
+  margin: 2rem;
+  letter-spacing: 2px;
+  font-weight: 300;
+  text-shadow: 7px 6px 5px black;
+}
+
+p {
+  max-width: 80ch;
+  line-height: 1.5;
+}
+
+main p {
+  /* margin: 0 2rem; */
+  margin-inline: 2rem;
+}
+
+figure {
+  margin-inline: 1rem;
+}
+
+.contact {
+  margin: 2rem;
+  max-width: fit-content;
+}
+
+.contact fieldset {
+  padding: 1rem;
+}
+
+.contact__form {
+}
+
+.contact__label {
+  display: inline-block;
+  width: 8rem;
+  height: 3rem;
+}
+
+.contact__input {
+  width: 15rem;
+  color: #39362f;
+  padding: 0.25rem 0.75rem;
+  border: 2px solid greenyellow;
+  border-radius: 5px;
+}
+
+.contact__label--textarea {
+  vertical-align: 42px;
+}
+
+.contact__input:focus-visible {
+  outline-color: red;
+}
+
+.btn {
+  color: black;
+  padding: 0.25rem 0.75rem;
+}
+
+.contact__btn {
+  /* margin-left: 15rem; */
+  float: right;
+}
+
+.contact fieldset div {
+  text-align: right;
+}

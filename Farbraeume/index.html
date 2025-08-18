@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CSS-Farbräume Demo – sRGB, HSL, HWB, Lab/LCH & Wide‑Gamut</title>
+    <style>
+      :root {
+        --bg: #0b0d12;
+        --card: #121620;
+        --text: #e6e7ea;
+        --muted: #98a2b3;
+        --ok: #29a36a;
+        --warn: #e6b800;
+        --no: #c23b3b;
+        --border: #1e2636;
+        --chip: #0f1420;
+        --shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+        --radius: 18px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
+          Inter, Ubuntu, Cantarell, Noto Sans, 'Helvetica Neue', Arial;
+        background: radial-gradient(
+            1200px 700px at 20% -10%,
+            #0f1522,
+            transparent 60%
+          ),
+          radial-gradient(900px 500px at 120% 10%, #141a28, transparent 60%),
+          var(--bg);
+        color: var(--text);
+      }
+      header {
+        max-width: 1100px;
+        margin: 40px auto 24px;
+        padding: 0 20px;
+      }
+      h1 {
+        font-size: clamp(1.4rem, 2.4vw + 1rem, 2.4rem);
+        margin: 0 0 12px;
+      }
+      p.lead {
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.6;
+      }
+      .chips {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
+      .chip {
+        background: var(--chip);
+        border: 1px solid var(--border);
+        padding: 6px 10px;
+        border-radius: 999px;
+        font-size: 0.86rem;
+        color: var(--muted);
+      }
+
+      .wrap {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 20px 60px;
+      }
+      .card {
+        background: linear-gradient(
+          180deg,
+          rgba(255, 255, 255, 0.02),
+          rgba(255, 255, 255, 0)
+        );
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+      .section {
+        padding: 18px;
+      }
+      .title {
+        font-size: 1.05rem;
+        color: #cfd5e3;
+        margin: 0 0 10px;
+      }
+      .muted {
+        color: var(--muted);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+        gap: 14px;
+      }
+      .swatch {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+      .swatch-top {
+        height: 120px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        padding: 8px;
+      }
+      .swatch-badges {
+        display: flex;
+        gap: 6px;
+      }
+      .badge {
+        font-size: 0.72rem;
+        padding: 4px 6px;
+        border-radius: 8px;
+        background: #0005;
+        color: #fff;
+        border: 1px solid #fff2;
+      }
+      .swatch-body {
+        padding: 12px;
+        background: var(--card);
+      }
+      .code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+          'Liberation Mono', monospace;
+        font-size: 0.86rem;
+        word-break: break-all;
+      }
+
+      .status {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+      .status .pill {
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--card);
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+      }
+
+      .table {
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        overflow: hidden;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        padding: 10px 12px;
+        border-bottom: 1px solid var(--border);
+        text-align: left;
+      }
+      th {
+        background: #0f1420;
+        color: #cfd5e3;
+      }
+      tr:last-child td {
+        border-bottom: none;
+      }
+
+      .compare {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .block {
+        height: 80px;
+        border-radius: 12px;
+        border: 1px solid var(--border);
+      }
+
+      .hint {
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+      .separator {
+        height: 1px;
+        background: var(--border);
+        margin: 14px 0;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>
+        CSS‑Farbräume Demo: sRGB, HSL, HWB, Lab/LCH & Wide‑Gamut (<code
+          >color()</code
+        >
+        mit Display‑P3 / Rec.2020)
+      </h1>
+      <p class="lead">
+        Diese Seite zeigt dir, welche Farbräume dein Browser versteht und ob
+        dein Display einen größeren Farbumfang als sRGB darstellen kann. Wenn
+        dein Monitor nur sRGB kann, erscheinen „Wide‑Gamut“-Farben (P3/Rec.2020)
+        ähnlich wie normale sRGB‑Farben.
+      </p>
+      <div class="chips">
+        <span class="chip"
+          >Tipp: Öffne diese Seite auf einem Smartphone/Notebook mit
+          Retina‑/OLED‑Display zum Vergleich.</span
+        >
+      </div>
+    </header>
+
+    <div class="wrap">
+      <div class="card section">
+        <h2 class="title">System‑Check</h2>
+        <div class="status" id="systemStatus">
+          <!-- JS füllt hier Badges ein -->
+        </div>
+        <div class="separator"></div>
+        <div class="hint">
+          Hinweis: "Unterstützt" bedeutet, dass der Browser die Syntax versteht.
+          Ob du den erweiterten Farbumfang <em>siehst</em>, hängt zusätzlich von
+          deinem Display ab.
+        </div>
+      </div>
+
+      <div style="height: 16px"></div>
+
+      <div class="card section">
+        <h2 class="title">
+          Vergleich – gleiche Idee, unterschiedliche Notation
+        </h2>
+        <p class="muted">
+          Alle Kacheln zielen grob auf einen warmen Orange‑Ton. Beachte die
+          unterschiedlichen Schreibweisen.
+        </p>
+        <div class="grid" id="notationGrid">
+          <!-- JS erzeugt Swatches -->
+        </div>
+      </div>
+
+      <div style="height: 16px"></div>
+
+      <div class="card section">
+        <h2 class="title">
+          Wide‑Gamut‑Demo (nur sichtbar, wenn dein System P3/Rec.2020 darstellt)
+        </h2>
+        <p class="muted">
+          Links jeweils sRGB‑Referenz, rechts eine P3/Rec.2020‑Variante mit
+          ähnlichem Farbton aber höherer Sättigung. Auf sRGB‑Displays wirken
+          beide Seiten sehr ähnlich.
+        </p>
+        <div class="grid">
+          <div class="swatch">
+            <div class="swatch-top" style="background: #ff4d00">
+              <div class="swatch-badges">
+                <span class="badge">sRGB Referenz</span>
+              </div>
+            </div>
+            <div class="swatch-body"><div class="code">#ff4d00</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-top" id="p3Orange">
+              <div class="swatch-badges">
+                <span class="badge">P3</span
+                ><span class="badge">color(display-p3 …)</span>
+              </div>
+            </div>
+            <div class="swatch-body">
+              <div class="code" id="p3OrangeCode"></div>
+            </div>
+          </div>
+
+          <div class="swatch">
+            <div class="swatch-top" style="background: #00a7ff">
+              <div class="swatch-badges">
+                <span class="badge">sRGB Referenz</span>
+              </div>
+            </div>
+            <div class="swatch-body"><div class="code">#00a7ff</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-top" id="p3Cyan">
+              <div class="swatch-badges">
+                <span class="badge">P3</span
+                ><span class="badge">color(display-p3 …)</span>
+              </div>
+            </div>
+            <div class="swatch-body">
+              <div class="code" id="p3CyanCode"></div>
+            </div>
+          </div>
+
+          <div class="swatch">
+            <div class="swatch-top" style="background: #ff00b1">
+              <div class="swatch-badges">
+                <span class="badge">sRGB Referenz</span>
+              </div>
+            </div>
+            <div class="swatch-body"><div class="code">#ff00b1</div></div>
+          </div>
+          <div class="swatch">
+            <div class="swatch-top" id="p3Magenta">
+              <div class="swatch-badges">
+                <span class="badge">P3</span
+                ><span class="badge">color(display-p3 …)</span>
+              </div>
+            </div>
+            <div class="swatch-body">
+              <div class="code" id="p3MagentaCode"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="separator"></div>
+        <div class="compare">
+          <div>
+            <div class="muted">P3‑Gradient (mit sRGB‑Fallback)</div>
+            <div class="block" id="p3Gradient"></div>
+          </div>
+          <div>
+            <div class="muted">Rec.2020‑Gradient (mit sRGB‑Fallback)</div>
+            <div class="block" id="rec2020Gradient"></div>
+          </div>
+        </div>
+      </div>
+
+      <div style="height: 16px"></div>
+
+      <div class="card section">
+        <h2 class="title">Unterstützung prüfen (Browser‑Syntax)</h2>
+        <div class="table">
+          <table>
+            <thead>
+              <tr>
+                <th>Notation</th>
+                <th>Beispiel</th>
+                <th>Browser versteht?</th>
+              </tr>
+            </thead>
+            <tbody id="supportRows"></tbody>
+          </table>
+        </div>
+        <p class="hint">
+          Lab/LCH können verstanden werden, auch wenn der sichtbare Unterschied
+          gering ist, falls dein Display keinen Wide‑Gamut hat.
+        </p>
+      </div>
+    </div>
+
+    <script>
+      // Helper: Badge pill
+      function pill(label, ok) {
+        const color =
+          ok === true
+            ? 'var(--ok)'
+            : ok === 'maybe'
+            ? 'var(--warn)'
+            : 'var(--no)';
+        return `<span class="pill"><span class="dot" style="background:${color}"></span>${label}</span>`;
+      }
+
+      // 1) System check badges (display gamut & CSS supports)
+      (function () {
+        const el = document.getElementById('systemStatus');
+        const supportsP3 = window.matchMedia('(color-gamut: p3)').matches;
+        const supports2020 = window.matchMedia(
+          '(color-gamut: rec2020)'
+        ).matches;
+        const supportsLab = CSS.supports('color', 'lab(70% 40 30)');
+        const supportsLch = CSS.supports('color', 'lch(70% 60 40)');
+        const supportsHwb = CSS.supports('color', 'hwb(200 10% 10%)');
+        const supportsOklch = CSS.supports('color', 'oklch(70% 0.2 40)');
+        el.innerHTML = [
+          pill(
+            `Display‑P3 Farbumfang: ${supportsP3 ? 'verfügbar' : 'nur sRGB'}`,
+            supportsP3
+          ),
+          pill(
+            `Rec.2020 Farbumfang: ${
+              supports2020 ? 'verfügbar' : 'nicht verfügbar'
+            }`,
+            supports2020
+          ),
+          pill(
+            `Syntax lab()/lch()/oklch(): ${
+              supportsLab && supportsLch && supportsOklch
+                ? 'ok'
+                : 'teilweise/kein Support'
+            }`,
+            supportsLab && supportsLch && supportsOklch
+              ? true
+              : supportsLab || supportsLch || supportsOklch
+              ? 'maybe'
+              : false
+          ),
+          pill(
+            `Syntax hwb(): ${supportsHwb ? 'ok' : 'nicht unterstützt'}`,
+            supportsHwb
+          ),
+        ].join('');
+      })();
+
+      // 2) Notation grid (similar orange tone across models)
+      (function () {
+        const items = [
+          { label: 'HEX (sRGB)', code: '#ff7a1a', bg: '#ff7a1a' },
+          { label: 'rgb()', code: 'rgb(255 122 26)', bg: 'rgb(255 122 26)' },
+          { label: 'hsl()', code: 'hsl(30 100% 55%)', bg: 'hsl(30 100% 55%)' },
+          {
+            label: 'hwb()',
+            code: 'hwb(30 0% 20%)',
+            bg: CSS.supports('color', 'hwb(30 0% 20%)')
+              ? 'hwb(30 0% 20%)'
+              : '#d96a1a',
+          },
+          {
+            label: 'lab()',
+            code: 'lab(70% 40 50)',
+            bg: CSS.supports('color', 'lab(70% 40 50)')
+              ? 'lab(70% 40 50)'
+              : '#e26e1f',
+          },
+          {
+            label: 'lch()',
+            code: 'lch(70% 75 40)',
+            bg: CSS.supports('color', 'lch(70% 75 40)')
+              ? 'lch(70% 75 40)'
+              : '#e26e1f',
+          },
+          {
+            label: 'oklch()',
+            code: 'oklch(70% 0.2 40)',
+            bg: CSS.supports('color', 'oklch(70% 0.2 40)')
+              ? 'oklch(70% 0.2 40)'
+              : '#e26e1f',
+          },
+          {
+            label: 'color(display-p3 …)',
+            code: 'color(display-p3 1 0.45 0)',
+            bg: CSS.supports('color', 'color(display-p3 1 0.45 0)')
+              ? 'color(display-p3 1 0.45 0)'
+              : '#ff7a1a',
+          },
+          {
+            label: 'color(rec2020 …)',
+            code: 'color(rec2020 0.88 0.35 0.00)',
+            bg: CSS.supports('color', 'color(rec2020 0.88 0.35 0.00)')
+              ? 'color(rec2020 0.88 0.35 0.00)'
+              : '#ff7a1a',
+          },
+        ];
+        const grid = document.getElementById('notationGrid');
+        grid.innerHTML = items
+          .map(
+            (it) => `
+        <div class="swatch">
+          <div class="swatch-top" style="background:${it.bg}">
+            <div class="swatch-badges"><span class="badge">${it.label}</span></div>
+          </div>
+          <div class="swatch-body"><div class="code">${it.code}</div></div>
+        </div>
+      `
+          )
+          .join('');
+      })();
+
+      // 3) Wide‑gamut swatches & gradients
+      (function () {
+        const p3Orange = 'color(display-p3 1 0.35 0)'; // kräftiges Orange (teils außerhalb sRGB)
+        const p3Cyan = 'color(display-p3 0.00 0.85 1)'; // intensives Cyan
+        const p3Magenta = 'color(display-p3 1 0.00 0.75)'; // leuchtendes Magenta
+
+        const elO = document.getElementById('p3Orange');
+        const elOC = document.getElementById('p3OrangeCode');
+        const elC = document.getElementById('p3Cyan');
+        const elCC = document.getElementById('p3CyanCode');
+        const elM = document.getElementById('p3Magenta');
+        const elMC = document.getElementById('p3MagentaCode');
+
+        if (CSS.supports('color', p3Orange)) {
+          elO.style.background = p3Orange;
+          elOC.textContent = p3Orange;
+        } else {
+          elO.style.background = '#ff4d00';
+          elOC.textContent = 'Fallback: #ff4d00';
+        }
+
+        if (CSS.supports('color', p3Cyan)) {
+          elC.style.background = p3Cyan;
+          elCC.textContent = p3Cyan;
+        } else {
+          elC.style.background = '#00a7ff';
+          elCC.textContent = 'Fallback: #00a7ff';
+        }
+
+        if (CSS.supports('color', p3Magenta)) {
+          elM.style.background = p3Magenta;
+          elMC.textContent = p3Magenta;
+        } else {
+          elM.style.background = '#ff00b1';
+          elMC.textContent = 'Fallback: #ff00b1';
+        }
+
+        // Gradients
+        const g1 = document.getElementById('p3Gradient');
+        const g2 = document.getElementById('rec2020Gradient');
+
+        if (CSS.supports('color', 'color(display-p3 1 0 0)')) {
+          g1.style.background =
+            'linear-gradient(90deg, color(display-p3 1 0 0), color(display-p3 0 1 0), color(display-p3 0 0 1))';
+        } else {
+          g1.style.background =
+            'linear-gradient(90deg, #ff0000, #00ff00, #0000ff)';
+        }
+
+        if (CSS.supports('color', 'color(rec2020 1 0 0)')) {
+          g2.style.background =
+            'linear-gradient(90deg, color(rec2020 0.9 0.05 0.05), color(rec2020 0.05 0.9 0.05), color(rec2020 0.05 0.05 0.9))';
+        } else {
+          g2.style.background =
+            'linear-gradient(90deg, #ff3b30, #34c759, #0a84ff)';
+        }
+      })();
+
+      // 4) Support table
+      (function () {
+        const rows = document.getElementById('supportRows');
+        const tests = [
+          ['HEX', '#ff7a1a', true],
+          [
+            'rgb()',
+            'rgb(255 122 26)',
+            CSS.supports('color', 'rgb(255 122 26)'),
+          ],
+          [
+            'hsl()',
+            'hsl(30 100% 55%)',
+            CSS.supports('color', 'hsl(30 100% 55%)'),
+          ],
+          [
+            'hwb()',
+            'hwb(200 10% 10%)',
+            CSS.supports('color', 'hwb(200 10% 10%)'),
+          ],
+          ['lab()', 'lab(70% 40 30)', CSS.supports('color', 'lab(70% 40 30)')],
+          ['lch()', 'lch(70% 60 40)', CSS.supports('color', 'lch(70% 60 40)')],
+          [
+            'oklch()',
+            'oklch(70% 0.2 40)',
+            CSS.supports('color', 'oklch(70% 0.2 40)'),
+          ],
+          [
+            'color(display-p3 …)',
+            'color(display-p3 1 0 0)',
+            CSS.supports('color', 'color(display-p3 1 0 0)'),
+          ],
+          [
+            'color(rec2020 …)',
+            'color(rec2020 1 0 0)',
+            CSS.supports('color', 'color(rec2020 1 0 0)'),
+          ],
+        ];
+        rows.innerHTML = tests
+          .map(([name, example, ok]) => {
+            const dot = `<span class=dot style="display:inline-block;margin-right:8px;vertical-align:middle;background:${
+              ok ? 'var(--ok)' : 'var(--no)'
+            }"></span>`;
+            return `<tr><td>${name}</td><td><code>${example}</code></td><td>${dot}${
+              ok ? 'Ja' : 'Nein'
+            }</td></tr>`;
+          })
+          .join('');
+      })();
+    </script>
+  </body>
+</html>
