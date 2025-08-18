@@ -1,5 +1,10 @@
 /* External stylesheet */
 
+* {
+  box-sizing: border-box;
+  /* outline: 2px dotted purple; */
+}
+
 /* Element selector - styling all paragraphs */
 p {
   color: orange;
@@ -20,4 +25,24 @@ p {
 /* Special paragraph with extra margin */
 .important-text {
   margin-block: 60px;
+}
+
+.container {
+  background-color: orange;
+  width: 20rem;
+  height: 20rem;
+  align-content: center;
+  padding: 3rem;
+  border: 3px solid red;
+  margin: 4rem;
+}
+
+.box {
+  background-color: blue;
+  width: 5rem;
+  height: 5rem;
+  margin: auto;
+  text-align: center;
+  line-height: 5rem;
+  color: white;
 }
