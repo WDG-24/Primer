@@ -5,6 +5,18 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Meine erste Website</title>
+    <!-- Internal style example -->
+    <style>
+      body {
+        background-color: lightgray;
+      }
+
+      p {
+        color: green;
+      }
+    </style>
+    <!-- External stylesheet link -->
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -12,9 +24,13 @@
 
     <!-- Dies hier ist ein Blogeintrag -->
     <div>
-      <h2>Das ist ein Blog-Artikel</h2>
-      <p>Das ist mein großartiger Blog-Artikel</p>
-      <p>
+      <h2 class="myHeading">Das ist ein Blog-Artikel</h2>
+      <!-- Special paragraph with extra spacing -->
+      <p class="myParagraph important-text">
+        Das ist mein großartiger Blog-Artikel
+      </p>
+      <!-- Inline style example - overrides both internal and external styles -->
+      <p style="color: red; background-color: yellow">
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptate
         asperiores veniam dolor error vitae accusamus sit neque debitis ullam
         commodi atque quo, soluta quam provident eos tenetur quis, vero qui cum
@@ -29,6 +45,13 @@
           repellat provident</em
         >, asperiores modi corrupti. Vitae nisi voluptatum accusamus magni nemo
         cupiditate?
+      </p>
+
+      <p class="myParagraph">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex dolorum
+        deleniti, eligendi dolores cum incidunt laboriosam provident saepe sit!
+        Nemo, maxime dolores non, id quas nulla quod est quidem, error nesciunt
+        numquam.
       </p>
     </div>
   </body>

@@ -1,0 +1,23 @@
+/* External stylesheet */
+
+/* Element selector - styling all paragraphs */
+p {
+  color: orange;
+}
+
+/* Class selector - reusable styling for specific elements */
+.myParagraph {
+  color: blue;
+  font-family: Verdana, 'Segoe UI', Tahoma, Geneva, sans-serif;
+  font-size: 18px;
+  line-height: 1.25;
+}
+
+.myHeading {
+  text-decoration: underline;
+}
+
+/* Special paragraph with extra margin */
+.important-text {
+  margin-block: 60px;
+}
