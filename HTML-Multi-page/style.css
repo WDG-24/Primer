@@ -99,16 +99,21 @@ figure {
   height: 3rem;
 }
 
+.contact fieldset div {
+  text-align: right;
+}
+
+.contact__label--textarea {
+}
+
 .contact__input {
+  /* Centers the input field and therefore also the label */
+  vertical-align: middle;
   width: 15rem;
   color: #39362f;
   padding: 0.25rem 0.75rem;
   border: 2px solid greenyellow;
   border-radius: 5px;
-}
-
-.contact__label--textarea {
-  vertical-align: 42px;
 }
 
 .contact__input:focus-visible {
@@ -123,8 +128,4 @@ figure {
 .contact__btn {
   /* margin-left: 15rem; */
   float: right;
-}
-
-.contact fieldset div {
-  text-align: right;
 }
