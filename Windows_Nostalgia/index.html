@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Windows Nostalgia</title>
+  </head>
+  <body>
+    <aside class="window" popover id="window">
+      <header class="window__header">
+        <h2 class="window__heading">Kernel panic</h2>
+      </header>
+
+      <!-- <div class="border"></div> -->
+      <section class="window__content">
+        <img
+          class="window__img"
+          src="https://i.postimg.cc/wTQJ3hgb/error.png"
+          width="20"
+          height="20"
+          alt="" />
+        <p class="window__message">
+          Please shut down your computer, and go for a walk.
+        </p>
+        <button class="window__btn" popovertarget="window">Cancel</button>
+      </section>
+    </aside>
+
+    <main>
+      <button popovertarget="window">Toogle window</button>
+    </main>
+  </body>
+</html>

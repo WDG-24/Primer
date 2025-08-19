@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+
+  font-size: 62.5%;
+  /* 16px → 62.5% = 10px = 1rem */
+}
+
+body {
+  background-image: url(image.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  font-family: Tahoma, sans-serif;
+  align-content: center;
+}
+
+a,
+button,
+input {
+  font: inherit;
+  color: inherit;
+}
+
+.window {
+  margin: auto;
+  background-color: silver;
+  width: 47.5rem;
+  /* width: fit-content; */
+  border: 3px solid;
+  border-color: #f6feff #3f3f3f #3f3f3f #f6feff;
+  border-radius: 5px;
+  /* box-shadow: 5px 5px #3f3f3f, -5px -5px white; */
+}
+
+.window__header {
+  color: white;
+  background-image: linear-gradient(to right in oklch, #0e256b, #abcbf2);
+  /* height: 20rem; */
+  /* background-image: linear-gradient(to right in oklch, blue, yellow); */
+  padding: 0.5rem 2rem;
+  /* border-bottom: 1px solid;
+  border-image: linear-gradient(to right, #1f305b, #92b2d3) 1;
+ */
+  position: relative;
+}
+
+.window__header::after {
+  content: '';
+  height: 1px;
+  width: 100%;
+  /* background-color: red; */
+  background-image: linear-gradient(to right, #1f305b, #92b2d3);
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+/* .border {
+  height: 1px;
+  background-image: linear-gradient(to right, #1f305b, #92b2d3);
+} */
+
+.window__heading {
+  font-size: 1.25rem;
+  /* margin: 1rem 2rem; */
+}
+
+.window__content {
+  padding: 2rem;
+  /* display: flex;
+  align-items: flex-start;
+  gap: 2rem; */
+}
+
+.window__message {
+  display: inline;
+  margin-left: 2rem;
+  font-size: 1.5rem;
+  vertical-align: 1.25rem;
+}
+
+.window__img {
+  width: 4rem;
+  height: auto;
+  /* aspect-ratio: 1; */
+  /* vertical-align: middle; */
+  /* box-shadow: 3px 3px 0px black; */
+  /* border-radius: 1000px; */
+  filter: drop-shadow(3px 3px 0px #85807e);
+  image-rendering: pixelated;
+}
+
+.window__btn {
+  /* float: right; */
+  /* margin-bottom: 20rem; */
+  margin: 2rem 0 0 36.5rem;
+  padding: 0.5rem 1rem;
+  background-color: transparent;
+  border: 3px outset;
+  letter-spacing: -0.5;
+  font-weight: 600;
+  /* font-family: inherit; */
+  cursor: pointer;
+}
+
+.window__btn:active {
+  /* background-color: green; */
+  border: 3px inset;
+}
