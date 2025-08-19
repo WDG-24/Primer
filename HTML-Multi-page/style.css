@@ -17,11 +17,41 @@ button {
   color: inherit;
 }
 
-header,
+/* header,
 main,
 footer {
   max-width: 1200px;
   margin: auto;
+} */
+body > * {
+  max-width: 1200px;
+  /* margin: 0 auto; */
+  margin-inline: auto;
+}
+
+/* @media (max-width: 800px) {
+  body {
+    background-color: rebeccapurple;
+  }
+}
+
+@media (min-width: 400px) {
+  body {
+    background-color: blue;
+    margin: 10rem;
+  }
+} */
+
+@media (width < 1200px) {
+  body {
+    background-color: orangered;
+  }
+}
+
+@media (500px < width < 1000px) {
+  body {
+    font-family: 'Times New Roman', Times, serif;
+  }
 }
 
 header {
@@ -114,6 +144,11 @@ figure {
   padding: 0.25rem 0.75rem;
   border: 2px solid greenyellow;
   border-radius: 5px;
+
+  @media (width < 470px) and (max-width: 800px) {
+    width: 10rem;
+    padding: 0.125rem 0.5rem;
+  }
 }
 
 .contact__input:focus-visible {
